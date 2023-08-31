@@ -7,7 +7,7 @@ namespace GymTerminatorApp.Models
     {
         public Membresium()
         {
-            Miembros = new HashSet<Miembro>();
+            MembresiaMiembros = new HashSet<MembresiaMiembro>();
         }
 
         public int MembresiaId { get; set; }
@@ -17,6 +17,6 @@ namespace GymTerminatorApp.Models
         public string UnidadDuracion { get; set; } = null!;
         public string? Descripcion { get; set; }
 
-        public virtual ICollection<Miembro> Miembros { get; set; }
+        public virtual ICollection<MembresiaMiembro> MembresiaMiembros { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace GymTerminatorApp.Models
         public Miembro()
         {
             Contactos = new HashSet<Contacto>();
+            MembresiaMiembros = new HashSet<MembresiaMiembro>();
             MiembroEventos = new HashSet<MiembroEvento>();
             PlanEntrenamientoMiembros = new HashSet<PlanEntrenamientoMiembro>();
         }
@@ -15,10 +16,11 @@ namespace GymTerminatorApp.Models
         public int MiembroId { get; set; }
         public string Nombre { get; set; } = null!;
         public string Apellido { get; set; } = null!;
-        public int? MembresiaId { get; set; }
+        public string? UserId { get; set; }
 
-        public virtual Membresium? Membresia { get; set; }
+        public virtual AspNetUser? User { get; set; }
         public virtual ICollection<Contacto> Contactos { get; set; }
+        public virtual ICollection<MembresiaMiembro> MembresiaMiembros { get; set; }
         public virtual ICollection<MiembroEvento> MiembroEventos { get; set; }
         public virtual ICollection<PlanEntrenamientoMiembro> PlanEntrenamientoMiembros { get; set; }
     }
