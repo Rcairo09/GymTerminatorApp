@@ -1,8 +1,20 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if(User.IsInRole("Administrador")){
+    <h1>Hola administrador</h1>
+}
+else
+{
+    @if (User.IsInRole("Cliente"))
+    {
+        <h1>Hola Cliente</h1>
+    }
+}
+

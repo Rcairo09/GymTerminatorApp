@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using GymTerminatorApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymTerminatorApp.Data
@@ -9,5 +10,12 @@ namespace GymTerminatorApp.Data
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }
