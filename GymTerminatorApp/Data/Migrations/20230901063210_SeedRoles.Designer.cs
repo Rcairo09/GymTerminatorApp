@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymTerminatorApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230830034808_SeedRoles")]
+    [Migration("20230901063210_SeedRoles")]
     partial class SeedRoles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,22 +53,22 @@ namespace GymTerminatorApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6d452aa3-e611-4cf1-82d9-f866101bd60e",
-                            ConcurrencyStamp = "df4c8274-74e4-4b9f-b6b1-bb1dd7476068",
+                            Id = "e20eb199-1d42-4f38-b22a-a786960ca6d1",
+                            ConcurrencyStamp = "05200dcb-bf61-4863-a0ac-d960bbfe8cc9",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
-                            Id = "5d0af95c-1862-431c-abb3-56aa0bf217bb",
-                            ConcurrencyStamp = "f9e44443-d18d-403d-9dcf-2a3d119838f4",
+                            Id = "d87d6079-4d75-49c2-98a3-25983db8da7d",
+                            ConcurrencyStamp = "e43b250b-5abf-46de-b249-a1601d52a534",
                             Name = "Cliente",
                             NormalizedName = "CLIENTE"
                         },
                         new
                         {
-                            Id = "147d6c3d-3a08-4356-ae59-1412a279497f",
-                            ConcurrencyStamp = "4837a24f-4653-4fd8-a3e3-bcfe13370af3",
+                            Id = "c087e17e-a071-4611-b5ad-ee1d796e62da",
+                            ConcurrencyStamp = "f005fa0c-09c7-410f-a587-59b228023559",
                             Name = "Entrenador",
                             NormalizedName = "ENTRENADOR"
                         });
@@ -236,8 +236,8 @@ namespace GymTerminatorApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "9231ca89-c9b4-4e78-914c-5d5f4639a99d",
-                            RoleId = "6d452aa3-e611-4cf1-82d9-f866101bd60e"
+                            UserId = "f6aedddd-d247-4982-841a-a7515ea0cd67",
+                            RoleId = "e20eb199-1d42-4f38-b22a-a786960ca6d1"
                         });
                 });
 
@@ -271,17 +271,17 @@ namespace GymTerminatorApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9231ca89-c9b4-4e78-914c-5d5f4639a99d",
+                            Id = "f6aedddd-d247-4982-841a-a7515ea0cd67",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d0b6726d-8b23-4cae-937b-1e588e7730c5",
+                            ConcurrencyStamp = "b4664696-20d7-4729-921c-4ff83be5c7d1",
                             Email = "martinezjohnny324@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MARTINEZJOHNNY324@GMAIL.COM",
                             NormalizedUserName = "MARTINEZJOHNNY324@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMaedDKDRDBUeaXqm8x63jFlI7Huvaa20QVgnpDoJZqckEYfzMmYpMrTXfB5yPCsuQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENQf4r7e423YesEb0OkNC9DFOEBvfqyp9zPCahCs/4QnBxIioQ6HtNVgQs6T2rVxJQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bf56b1c7-a725-46c1-b158-fa9e11873a52",
+                            SecurityStamp = "2324add9-dfd9-4565-8a72-931fd941359c",
                             TwoFactorEnabled = false,
                             UserName = "martinezjohnny324@gmail.com"
                         });
