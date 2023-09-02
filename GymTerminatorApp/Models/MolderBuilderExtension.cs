@@ -18,6 +18,8 @@ namespace GymTerminatorApp.Models
             // Crear USERS
             List<ApplicationUser> users = new List<ApplicationUser>() {
                 new ApplicationUser {
+                    FirstName = "Johnny",
+                    LastName = "Eduardo",
                     UserName = "martinezjohnny324@gmail.com",
                     NormalizedUserName = "MARTINEZJOHNNY324@GMAIL.COM",
                     Email = "martinezjohnny324@gmail.com",
