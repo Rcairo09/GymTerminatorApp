@@ -12,25 +12,79 @@
     <link href="bootstrap.bundle.min.js" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Terminator Gym</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <partial name="_LoginPartial" />
-                </ul>
-            </div>
-        </div>
-    </nav>
-    @RenderSection("masthead", required : false)
-    
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Terminator Gym</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.IsInRole("Administrador"))
+                        {
 
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Entrenador" asp-action="Index">Entrenador</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Especialidad" asp-action="Index">Especialidad</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Evento" asp-action="Index">Evento</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Membresium" asp-action="Index">Membresia</a>
+                            </li>
+
+                        }
+                        @if (User.IsInRole("Cliente"))
+                        {
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MembresiaMiembro" asp-action="Index"> Membresia</a>
+                        </li>
+                               
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="MiembroEvento" asp-action="Index"> Eventos</a>
+                            </li>
+
+                         @if (User.IsInRole("Entrenador"))
+                          {
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Ejercicio" asp-action="Index">Ejercicio</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PlanEntrenamiento" asp-action="Index">Plan de Entrenamiento</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PlanEntrenamientoEjercicio" asp-action="Index">Ejercicios del plan de entrenamiento</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PlanEntrenamientoMiembro" asp-action="Index">Miembros del plan de Entrenamiento</a>
+                            </li>
+
+
+                        }
+                           }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    @RenderSection("masthead", required : false)
     <div class="container">
         <main role="main" class="py-5">
             @RenderBody()

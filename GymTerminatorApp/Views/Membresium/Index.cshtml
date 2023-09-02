@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GymTerminatorApp.Models.Membresium>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="display-4">Membresías</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear Nueva Membresía</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Duración</th>
+                <th>Unidad de Duración</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Duracion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UnidadDuracion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Acciones">
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.MembresiaId">Editar</a>
+                            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.MembresiaId">Detalles</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.MembresiaId">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

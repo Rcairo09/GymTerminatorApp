@@ -1,6 +1,6 @@
 ﻿.masthead {
-    height: 100vh;
-    min-height: 500px;
+    min-height: 500px; /* Establece la altura mínima */
+    height: calc(100vh - 80px); /* Resta la altura del encabezado si es necesario */
     background-image: url('https://web-back.perfectgym.com/sites/default/files/styles/460x/public/equipment%20%286%29.jpg?itok=bC0T32-K');
     background-size: cover;
     background-position: center;
@@ -9,6 +9,6 @@
 
     .masthead h1, .masthead p {
         background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semitransparente */
-        padding: 10px; /* Espaciado para el texto */
+        padding:10px; /* Espaciado para el texto */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
