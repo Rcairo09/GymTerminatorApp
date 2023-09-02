@@ -7,10 +7,10 @@ namespace GymTerminatorApp.Models
     {
         public int MembresiaMiembroId { get; set; }
         public int MembresiaId { get; set; }
-        public int MiembroId { get; set; }
         public DateTime FechaAdquisicion { get; set; }
+        public string UserId { get; set; } = null!;
 
         public virtual Membresium Membresia { get; set; } = null!;
-        public virtual Miembro Miembro { get; set; } = null!;
+        public virtual AspNetUser User { get; set; } = null!;
     }
 }

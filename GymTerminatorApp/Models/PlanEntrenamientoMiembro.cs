@@ -7,9 +7,9 @@ namespace GymTerminatorApp.Models
     {
         public int PlanEntrenamientoMiembroId { get; set; }
         public int? PlanEntrenamientoId { get; set; }
-        public int? MiembroId { get; set; }
+        public string UserId { get; set; } = null!;
 
-        public virtual Miembro? Miembro { get; set; }
         public virtual PlanEntrenamiento? PlanEntrenamiento { get; set; }
+        public virtual AspNetUser User { get; set; } = null!;
     }
 }

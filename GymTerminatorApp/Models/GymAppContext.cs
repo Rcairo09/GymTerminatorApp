@@ -22,21 +22,20 @@ namespace GymTerminatorApp.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
-        public virtual DbSet<Contacto> Contactos { get; set; } = null!;
         public virtual DbSet<Ejercicio> Ejercicios { get; set; } = null!;
         public virtual DbSet<Entrenador> Entrenadors { get; set; } = null!;
         public virtual DbSet<Especialidad> Especialidads { get; set; } = null!;
         public virtual DbSet<Evento> Eventos { get; set; } = null!;
         public virtual DbSet<MembresiaMiembro> MembresiaMiembros { get; set; } = null!;
         public virtual DbSet<Membresium> Membresia { get; set; } = null!;
-        public virtual DbSet<Miembro> Miembros { get; set; } = null!;
         public virtual DbSet<MiembroEvento> MiembroEventos { get; set; } = null!;
         public virtual DbSet<PlanEntrenamiento> PlanEntrenamientos { get; set; } = null!;
         public virtual DbSet<PlanEntrenamientoEjercicio> PlanEntrenamientoEjercicios { get; set; } = null!;
         public virtual DbSet<PlanEntrenamientoMiembro> PlanEntrenamientoMiembros { get; set; } = null!;
-        public virtual DbSet<TipoContacto> TipoContactos { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -131,24 +130,6 @@ namespace GymTerminatorApp.Models
                     .HasForeignKey(d => d.UserId);
             });
 
-            modelBuilder.Entity<Contacto>(entity =>
-            {
-                entity.ToTable("Contacto");
-
-                entity.Property(e => e.ValorContacto).HasMaxLength(100);
-
-                entity.HasOne(d => d.Miembro)
-                    .WithMany(p => p.Contactos)
-                    .HasForeignKey(d => d.MiembroId)
-                    .HasConstraintName("FK_Contacto_Miembro");
-
-                entity.HasOne(d => d.TipoContacto)
-                    .WithMany(p => p.Contactos)
-                    .HasForeignKey(d => d.TipoContactoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Contacto_TipoContacto");
-            });
-
             modelBuilder.Entity<Ejercicio>(entity =>
             {
                 entity.ToTable("Ejercicio");
@@ -192,17 +173,19 @@ namespace GymTerminatorApp.Models
 
                 entity.Property(e => e.FechaAdquisicion).HasColumnType("date");
 
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
                 entity.HasOne(d => d.Membresia)
                     .WithMany(p => p.MembresiaMiembros)
                     .HasForeignKey(d => d.MembresiaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MembresiaMiembro_Membresia");
 
-                entity.HasOne(d => d.Miembro)
+                entity.HasOne(d => d.User)
                     .WithMany(p => p.MembresiaMiembros)
-                    .HasForeignKey(d => d.MiembroId)
+                    .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MembresiaMiembro_Miembro");
+                    .HasConstraintName("FK_MembresiaMiembro_Usuario");
             });
 
             modelBuilder.Entity<Membresium>(entity =>
@@ -217,36 +200,22 @@ namespace GymTerminatorApp.Models
                 entity.Property(e => e.UnidadDuracion).HasMaxLength(20);
             });
 
-            modelBuilder.Entity<Miembro>(entity =>
-            {
-                entity.ToTable("Miembro");
-
-                entity.HasIndex(e => e.UserId, "UQ__Miembro__1788CC4D3B4DCE43")
-                    .IsUnique();
-
-                entity.Property(e => e.Apellido).HasMaxLength(50);
-
-                entity.Property(e => e.Nombre).HasMaxLength(50);
-
-                entity.HasOne(d => d.User)
-                    .WithOne(p => p.Miembro)
-                    .HasForeignKey<Miembro>(d => d.UserId)
-                    .HasConstraintName("FK_Miembro_Usuario");
-            });
-
             modelBuilder.Entity<MiembroEvento>(entity =>
             {
                 entity.ToTable("MiembroEvento");
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
 
                 entity.HasOne(d => d.Evento)
                     .WithMany(p => p.MiembroEventos)
                     .HasForeignKey(d => d.EventoId)
                     .HasConstraintName("FK_MiembroEvento_Evento");
 
-                entity.HasOne(d => d.Miembro)
+                entity.HasOne(d => d.User)
                     .WithMany(p => p.MiembroEventos)
-                    .HasForeignKey(d => d.MiembroId)
-                    .HasConstraintName("FK_MiembroEvento_Miembro");
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MiembroEvento_Usuario");
             });
 
             modelBuilder.Entity<PlanEntrenamiento>(entity =>
@@ -280,22 +249,18 @@ namespace GymTerminatorApp.Models
             {
                 entity.ToTable("PlanEntrenamientoMiembro");
 
-                entity.HasOne(d => d.Miembro)
-                    .WithMany(p => p.PlanEntrenamientoMiembros)
-                    .HasForeignKey(d => d.MiembroId)
-                    .HasConstraintName("FK_PlanEntrenamientoMiembro_Miembro");
+                entity.Property(e => e.UserId).HasMaxLength(450);
 
                 entity.HasOne(d => d.PlanEntrenamiento)
                     .WithMany(p => p.PlanEntrenamientoMiembros)
                     .HasForeignKey(d => d.PlanEntrenamientoId)
                     .HasConstraintName("FK_PlanEntrenamientoMiembro_PlanEntrenamiento");
-            });
 
-            modelBuilder.Entity<TipoContacto>(entity =>
-            {
-                entity.ToTable("TipoContacto");
-
-                entity.Property(e => e.Nombre).HasMaxLength(50);
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.PlanEntrenamientoMiembros)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PlanEntrenamientoMiembro_Usuario");
             });
 
             OnModelCreatingPartial(modelBuilder);

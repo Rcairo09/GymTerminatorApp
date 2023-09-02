@@ -10,6 +10,9 @@ namespace GymTerminatorApp.Models
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
             AspNetUserTokens = new HashSet<AspNetUserToken>();
+            MembresiaMiembros = new HashSet<MembresiaMiembro>();
+            MiembroEventos = new HashSet<MiembroEvento>();
+            PlanEntrenamientoMiembros = new HashSet<PlanEntrenamientoMiembro>();
             Roles = new HashSet<AspNetRole>();
         }
 
@@ -30,10 +33,13 @@ namespace GymTerminatorApp.Models
         public int AccessFailedCount { get; set; }
         public string Discriminator { get; set; } = null!;
 
-        public virtual Miembro? Miembro { get; set; }
+
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual ICollection<MembresiaMiembro> MembresiaMiembros { get; set; }
+        public virtual ICollection<MiembroEvento> MiembroEventos { get; set; }
+        public virtual ICollection<PlanEntrenamientoMiembro> PlanEntrenamientoMiembros { get; set; }
 
         public virtual ICollection<AspNetRole> Roles { get; set; }
     }
