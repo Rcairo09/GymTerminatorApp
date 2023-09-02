@@ -7,14 +7,5 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if(User.IsInRole("Administrador")){
-    <h1>Hola administrador</h1>
-}
-else
-{
-    @if (User.IsInRole("Cliente"))
-    {
-        <h1>Hola Cliente</h1>
-    }
-}
+
 

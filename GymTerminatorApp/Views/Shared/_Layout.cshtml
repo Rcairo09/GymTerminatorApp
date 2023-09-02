@@ -19,12 +19,70 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @if (User.IsInRole("Administrador"))
+                        {
+
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Entrenador" asp-action="Index">Entrenador</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Especialidad" asp-action="Index">Especialidad</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Evento" asp-action="Index">Evento</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Membresium" asp-action="Index">Membresia</a>
+                            </li>
+
+                        }
+
+                        }
+                        else
+                        {
+                            @if (User.IsInRole("Cliente"))
+                            {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="MembresiaMiembro" asp-action="Index"> Membresia</a>
+                            </li>
+                               
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="MiembroEvento" asp-action="Index"> Eventos</a>
+                                </li>
+
+                            }
+                        }
+                        else
+                        {
+                         @if (User.IsInRole("Entrenador"))
+                          {
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Ejercicio" asp-action="Index">Ejercicio</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PlanEntrenamiento" asp-action="Index">Plan de Entrenamiento</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PlanEntrenamientoEjercicio" asp-action="Index">Ejercicios del plan de entrenamiento</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PlanEntrenamientoMiembro" asp-action="Index">Miembros del plan de Entrenamiento</a>
+                            </li>
+
+
+                        }
+                           }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
